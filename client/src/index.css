@@ -48,3 +48,12 @@ code {
 .icon {
   margin-right: 5px;
 }
+
+/* AddClientModal style popup*/
+#addClientModal > div > div > div.modal-header{
+  background-color: #0c0c0c;
+  color: #fff;
+}
+#addClientModal > div > div > div.modal-body{
+  background:#585858;
+}
