@@ -72,7 +72,7 @@ export default function AddClientModal() {
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="" className="form-label"></label>
-                                    <input type="text" className="form-control"
+                                    <input type="tel" className="form-control"
                                     id='phone'
                                     value={phone}
                                     onChange={(e) => setPhone(e.target.value)}

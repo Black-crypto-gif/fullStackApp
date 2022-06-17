@@ -1,10 +1,11 @@
 import React from 'react'
 import { useState } from 'react'
 import { useMutation, useQuery } from '@apollo/client'
-/* import { GET_PROJECTS } from '../queries/ProjectQuery' */
+import { GET_PROJECTS } from '../queries/ProjectQueries'
 import { GET_CLIENTS } from '../queries/ClientQuery'
 import { FaList } from 'react-icons/fa'
 import swal from 'sweetalert'
+import { ADD_PROJECT } from '../mutations/ProjectMutations'
 
 
 export default function AddProjectModal() {
@@ -13,6 +14,17 @@ export default function AddProjectModal() {
     const [clientId, setClientId] = useState('');
     const [status, setStatus] = useState('new');
 
+
+    const [addProject] = useMutation(ADD_PROJECT,{
+        variables: { name, description, status, clientId },
+        update(cache, { data: { addProject } }) {
+            const { projects } = cache.readQuery({ query: GET_PROJECTS })
+            cache.writeQuery({
+                query: GET_PROJECTS,
+                data: { projects: projects.concat([addProject]) },
+            })
+        }
+    });
     // get client for select
     const { loading, error, data } = useQuery(GET_CLIENTS);
 
@@ -21,6 +33,10 @@ export default function AddProjectModal() {
         if(name ==='' || description === '' || status === ''){
             swal('Error', 'Please fill all the fields', 'error')
         }
+        else{
+            swal('Success', 'Project added successfully', 'success')
+        }
+        addProject( name, description, status, clientId );
         /* addClient(name, email, phone); */
         setName('');
         setDescription('');
