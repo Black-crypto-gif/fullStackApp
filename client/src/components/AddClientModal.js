@@ -27,6 +27,9 @@ export default function AddClientModal() {
         if(name ==='' || email === '' || phone === ''){
             swal('Error', 'Please fill all the fields', 'error')
         }
+        else{
+            swal('Success', 'Client added successfully', 'success')
+        }
         addClient(name, email, phone);
         setName('');
         setEmail('');

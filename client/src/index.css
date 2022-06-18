@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: black;
 }
 
 code {
@@ -17,9 +18,10 @@ code {
 }
 
 .navbar-brand img {
-  width: 30px;
+  width: 50px;
   margin-right: 10px;
 }
+
 
 .btn {
   font-size: 15px;
